@@ -329,3 +329,13 @@ footer nav ul {
   color: red;
   font-size: 13px;
 }
+
+/***************************************************** Filtres *************************************************/
+
+.displayNone {
+  display: none;
+}
+
+.displayBlock {
+  display: block;
+}
