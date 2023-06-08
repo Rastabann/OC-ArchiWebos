@@ -159,7 +159,7 @@ function fetchWorks() {
           deleteButton.innerHTML = "Supprimer la galerie";
 
           close = document.createElement("span");
-
+          let iteration=0;
           myJson.forEach((work) => {
             trash_ = document.getElementById("trash");
             arrow_ = document.getElementById("arrow");
@@ -170,13 +170,21 @@ function fetchWorks() {
             };
             span = document.createElement("span");
             img = document.createElement("img");
-            span.style = "max-width:fit-content;position: static;";
+            span.style = "max-width:fit-content;position: relative;";
             img.src = work.imageUrl;
             img.classList.add("gallery-item");
+            edit = document.createElement("p");
+            edit.innerHTML = "éditer";
+            edit.style.textAlign = "left";
+            edit.style.marginBottom = "10px";
             span.appendChild(img);
             span.appendChild(trash);
-            span.appendChild(arrow);
+            if (iteration==0) {
+              span.appendChild(arrow);
+            }
+            span.appendChild(edit);
             photoGalleryWrapper.appendChild(span);
+            iteration++;
           });
 
           modalContent.appendChild(closeButton);
@@ -376,6 +384,7 @@ function sendWork() {
     oReq.setRequestHeader("accept", `*/*`);
     oReq.onload = function (oEvent) {
       if (oReq.status == 201) {
+        openAddView();
         oOutput.innerHTML = "Envoyé&nbsp;!";
         oOutput.style.color = "green";
         setPictures();
